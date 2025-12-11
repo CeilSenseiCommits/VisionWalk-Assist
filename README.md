@@ -21,5 +21,5 @@ Follow these steps to get the project running on your local machine.
 ### 2. Clone the Repository
 Open your terminal or command prompt and run:
 ```bash
-git clone [https://github.com/YOUR_USERNAME/DoorSense-AI.git](https://github.com/YOUR_USERNAME/DoorSense-AI.git)
+git clone [https://github.com/YOUR_USERNAME/DoorSense-AI.git](https://github.com/LetsSleep/DoorSense-AI.git)
 cd DoorSense-AI
