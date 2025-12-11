@@ -1,0 +1,21 @@
+# Python cache
+__pycache__/
+*.pyc
+
+# Virtual Environments
+venv/
+env/
+
+# Large Model Files (Github has a 100MB limit)
+*.pt
+*.onnx
+
+# Generated Audio Files (from your VoiceAlert system)
+alert_*.mp3
+
+# IDE settings
+.vscode/
+.idea/
+
+# System files
+.DS_Store
