@@ -119,7 +119,7 @@ $$\Delta d = \mathcal{D}(c_y, x_2) - \mathcal{D}(c_y, x_1)$$
 ## 📂 Project Structure
 
 ```
-VisionWalk-Assist/
+VisionGuide-Assist/
 ├── src/
 │   ├── main_Webcam.py      # Real-time pipeline using local USB/laptop webcam
 │   └── main_IP_Cam.py      # Real-time pipeline connecting to smartphone IP cameras
@@ -144,7 +144,7 @@ VisionWalk-Assist/
 ### 2. Clone the Repository
 ```bash
 git clone https://github.com/CeilSenseiCommits/VisionWalk-Assist.git
-cd VisionWalk-Assist
+cd VisionGuide-Assist
 ```
 
 ### 3. Create a Virtual Environment & Install Dependencies
@@ -167,7 +167,7 @@ pip install -r requirements.txt
 ## 🚀 Usage
 
 ### Mode A: Running with Laptop / USB Webcam
-Make sure your model weights `best.pt` are placed in the project root or configure `MODEL_NAME` in [src/main_Webcam.py](file:///c:/Users/surya/Desktop/Projects/VisionWalk-Assist/src/main_Webcam.py):
+Make sure your model weights `best.pt` are placed in the project root or configure `MODEL_NAME` in [src/main_Webcam.py](file:///c:/Users/surya/Desktop/Projects/VisionGuide-Assist/src/main_Webcam.py):
 ```bash
 python src/main_Webcam.py
 ```
@@ -176,7 +176,7 @@ python src/main_Webcam.py
 1. Install an IP Camera app on your smartphone (e.g., **IP Webcam** from Google Play).
 2. Connect both your phone and PC to the same Wi-Fi network.
 3. Start the camera server on your phone and note the local streaming URL (e.g., `http://192.168.1.15:8080/video`).
-4. Update line 87 in [src/main_IP_Cam.py](file:///c:/Users/surya/Desktop/Projects/VisionWalk-Assist/src/main_IP_Cam.py):
+4. Update line 87 in [src/main_IP_Cam.py](file:///c:/Users/surya/Desktop/Projects/VisionGuide-Assist/src/main_IP_Cam.py):
    ```python
    cap = cv2.VideoCapture('http://<YOUR_PHONE_IP>:<PORT>/video')
    ```
