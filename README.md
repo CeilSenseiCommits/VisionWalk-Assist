@@ -7,7 +7,7 @@
 [![YOLOv8](https://img.shields.io/badge/YOLOv8-Ultralytics-00FFFF.svg?logo=ultralytics&logoColor=black)](https://github.com/ultralytics/ultralytics)
 [![OpenCV](https://img.shields.io/badge/OpenCV-Computer%20Vision-5C3EE8.svg?logo=opencv&logoColor=white)](https://opencv.org/)
 [![MiDaS](https://img.shields.io/badge/MiDaS-Monocular%20Depth-orange.svg)](https://github.com/isl-org/MiDaS)
-[![Data Engine](https://img.shields.io/badge/Data%20Engine-AutoDoor--DataEngine-blueviolet.svg?logo=google&logoColor=white)](https://github.com/CeilSenseiCommits/AutoDoor-DataEngine)
+[![Data Engine](https://img.shields.io/badge/Data%20Engine-AutoDoor--DataEngine-blueviolet.svg?logo=google&logoColor=white)](https://github.com/Suryansh0402/AutoDoor-DataEngine)
 [![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 [![Accessibility](https://img.shields.io/badge/Assistive-Accessibility%20Tech-purple.svg)](#human-impact--accessibility-mission)
 
@@ -35,7 +35,7 @@ Furthermore, traditional distance sensors cannot determine **traversability**:
 
 Standard door detectors routinely fail in real-world deployments because they are trained on small, biased datasets lacking diverse lighting, perspective angles, and structural door types. Drawing thousands of manual bounding boxes is a severe operational bottleneck.
 
-**VisionGuide-Assist overcomes this data bottleneck using [AutoDoor-DataEngine](https://github.com/CeilSenseiCommits/AutoDoor-DataEngine)**—our automated multimodal data harvesting and VLM pseudo-labeling system:
+**VisionGuide-Assist overcomes this data bottleneck using [AutoDoor-DataEngine](https://github.com/Suryansh0402/AutoDoor-DataEngine)**—our automated multimodal data harvesting and VLM pseudo-labeling system:
 * **Zero-Shot Visual Grounding:** Uses multimodal Vision-Language Models (Gemini Flash, Grounding DINO) to auto-annotate door bounding boxes from raw indoor footage without manual labeling fatigue.
 * **Smart Video Frame Harvesting:** Ingests raw walking walkthrough footage and uses Laplacian variance filtering to prune blurry or redundant frames.
 * **Semi-Supervised Teacher–Student Learning:** Scales detector accuracy across thousands of unlabelled indoor scenes using exponential moving average (EMA) teacher pseudo-labeling.
@@ -143,7 +143,7 @@ VisionGuide-Assist/
 
 ### 2. Clone the Repository
 ```bash
-git clone https://github.com/CeilSenseiCommits/VisionGuide-Assist.git
+git clone https://github.com/Suryansh0402/VisionGuide-Assist.git
 cd VisionGuide-Assist
 ```
 
@@ -189,7 +189,7 @@ python src/main_Webcam.py
 
 ## 🧠 Model Training
 
-The custom YOLOv8 detector is trained on annotated open/closed door imagery, and continuously scaled and fine-tuned using high-diversity datasets synthesized by [AutoDoor-DataEngine](https://github.com/CeilSenseiCommits/AutoDoor-DataEngine).
+The custom YOLOv8 detector is trained on annotated open/closed door imagery, and continuously scaled and fine-tuned using high-diversity datasets synthesized by [AutoDoor-DataEngine](https://github.com/Suryansh0402/AutoDoor-DataEngine).
 
 To train or reproduce the weights:
 ```bash
