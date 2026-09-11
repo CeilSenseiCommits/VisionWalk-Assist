@@ -1,8 +1,8 @@
-# VisionWalk-Assist: Architectural Deep Dive & Design Document
+# VisionGuide-Assist: Architectural Deep Dive & Design Document
 
 ## 1. System Overview
 
-**VisionWalk-Assist** is an egocentric computer vision perception and spatial guidance system designed for individuals with visual impairments. The system solves three primary spatial navigation challenges:
+**VisionGuide-Assist** is an egocentric computer vision perception and spatial guidance system designed for individuals with visual impairments. Powered by the **[AutoDoor-DataEngine](https://github.com/CeilSenseiCommits/VisionForge-AI)** automated VLM visual harvesting and dataset generation engine, the system solves three primary spatial navigation challenges:
 
 1. **Semantic Categorization:** Distinguishing between open doorways (passable corridors) and closed doors (solid collision obstacles).
 2. **LiDAR-Free Range Sensing:** Estimating metric distance using dense monocular inverse disparity maps from a standard RGB video stream.

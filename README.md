@@ -1,4 +1,4 @@
-# VisionWalk-Assist: Egocentric Spatial AI Navigation for the Visually Impaired 🚪👁️
+# VisionGuide-Assist: Egocentric Spatial AI Navigation for the Visually Impaired 🚪👁️
 
 <div align="center">
 
@@ -7,12 +7,13 @@
 [![YOLOv8](https://img.shields.io/badge/YOLOv8-Ultralytics-00FFFF.svg?logo=ultralytics&logoColor=black)](https://github.com/ultralytics/ultralytics)
 [![OpenCV](https://img.shields.io/badge/OpenCV-Computer%20Vision-5C3EE8.svg?logo=opencv&logoColor=white)](https://opencv.org/)
 [![MiDaS](https://img.shields.io/badge/MiDaS-Monocular%20Depth-orange.svg)](https://github.com/isl-org/MiDaS)
+[![Data Engine](https://img.shields.io/badge/Data%20Engine-AutoDoor--DataEngine-blueviolet.svg?logo=google&logoColor=white)](https://github.com/CeilSenseiCommits/VisionForge-AI)
 [![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 [![Accessibility](https://img.shields.io/badge/Assistive-Accessibility%20Tech-purple.svg)](#human-impact--accessibility-mission)
 
 **A real-time, low-latency assistive computer vision system fusing custom YOLOv8 object detection, MiDaS monocular depth estimation, and non-blocking auditory spatial feedback to guide visually impaired individuals through indoor environments.**
 
-[Key Features](#-key-features) • [System Architecture](#-system-architecture) • [Mathematical Foundation](#-mathematical-foundation) • [Installation](#-installation--quickstart) • [Usage](#-usage) • [Model Training](#-model-training) • [Roadmap](#-future-roadmap)
+[Key Features](#-key-features) • [Powered by AutoDoor-DataEngine](#-powered-by-autodoor-dataengine) • [System Architecture](#-system-architecture) • [Mathematical Foundation](#-mathematical-foundation) • [Installation](#-installation--quickstart) • [Usage](#-usage) • [Model Training](#-model-training) • [Roadmap](#-future-roadmap)
 
 </div>
 
@@ -26,7 +27,20 @@ Furthermore, traditional distance sensors cannot determine **traversability**:
 * Is an obstacle a **closed door** (impassable physical barrier)?
 * Or is it an **open doorway** (a safe exit or navigation path)?
 
-**VisionWalk-Assist** operates as an **egocentric spatial AI assistant**. Designed for body-worn or chest-aligned cameras, it continuously monitors the user's forward walking path, detects doors, estimates physical distance without LiDAR, analyzes lateral direction and door orientation, and delivers crisp, prioritized voice guidance in real time.
+**VisionGuide-Assist** operates as an **egocentric spatial AI assistant**. Designed for body-worn or chest-aligned cameras, it continuously monitors the user's forward walking path, detects doors, estimates physical distance without LiDAR, analyzes lateral direction and door orientation, and delivers crisp, prioritized voice guidance in real time.
+
+---
+
+## 🚀 Powered by AutoDoor-DataEngine
+
+Standard door detectors routinely fail in real-world deployments because they are trained on small, biased datasets lacking diverse lighting, perspective angles, and structural door types. Drawing thousands of manual bounding boxes is a severe operational bottleneck.
+
+**VisionGuide-Assist overcomes this data bottleneck using [AutoDoor-DataEngine](https://github.com/CeilSenseiCommits/VisionForge-AI)**—our automated multimodal data harvesting and VLM pseudo-labeling system:
+* **Zero-Shot Visual Grounding:** Uses multimodal Vision-Language Models (Gemini Flash, Grounding DINO) to auto-annotate door bounding boxes from raw indoor footage without manual labeling fatigue.
+* **Smart Video Frame Harvesting:** Ingests raw walking walkthrough footage and uses Laplacian variance filtering to prune blurry or redundant frames.
+* **Semi-Supervised Teacher–Student Learning:** Scales detector accuracy across thousands of unlabelled indoor scenes using exponential moving average (EMA) teacher pseudo-labeling.
+* **Zero-Leakage Group Splitting:** Groups frames by physical building/video to eliminate data leakage between training and validation sets.
+* **Knowledge Distillation Ready:** Enables distilling heavy, high-accuracy teacher detectors (YOLOv8m/x) into ultra-fast edge student detectors (YOLOv8n) for deployment on wearable devices.
 
 ---
 
@@ -175,7 +189,7 @@ python src/main_Webcam.py
 
 ## 🧠 Model Training
 
-The custom YOLOv8 detector is trained on annotated open/closed door imagery via Roboflow.
+The custom YOLOv8 detector is trained on annotated open/closed door imagery, and continuously scaled and fine-tuned using high-diversity datasets synthesized by [AutoDoor-DataEngine](https://github.com/CeilSenseiCommits/VisionForge-AI).
 
 To train or reproduce the weights:
 ```bash
@@ -195,7 +209,7 @@ A critical vulnerability in real-time assistive systems is **speech synthesis la
 1. Standard Text-to-Speech (TTS) engines block the main execution thread for 500ms–2000ms while generating and playing audio, dropping video FPS to zero.
 2. In rapid detection loops, alerts can queue up, delivering stale warnings seconds after an obstacle was encountered.
 
-**VisionWalk-Assist solves this with a thread-safe singleton audio engine:**
+**VisionGuide-Assist solves this with a thread-safe singleton audio engine:**
 * **Daemonized Background Execution:** Speech is dispatched onto an asynchronous daemon thread (`threading.Thread(daemon=True)`).
 * **`is_busy` Atomic State Lock:** If an alert is currently playing, incoming detection cues are safely discarded rather than queued.
 * **Collision-Proof Media Lifecycle:** Audio files are generated with microsecond-timestamped randomized hashes (`alert_{timestamp}_{rand}.mp3`) and cleaned up immediately upon playback completion to prevent Windows file locks.
